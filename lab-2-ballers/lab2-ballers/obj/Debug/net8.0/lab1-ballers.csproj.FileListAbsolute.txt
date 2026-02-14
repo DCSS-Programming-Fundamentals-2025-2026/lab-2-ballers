@@ -1,0 +1,15 @@
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/bin/Debug/net8.0/lab1-ballers
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/bin/Debug/net8.0/lab1-ballers.deps.json
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/bin/Debug/net8.0/lab1-ballers.runtimeconfig.json
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/bin/Debug/net8.0/lab1-ballers.dll
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/bin/Debug/net8.0/lab1-ballers.pdb
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.GeneratedMSBuildEditorConfig.editorconfig
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.AssemblyInfoInputs.cache
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.AssemblyInfo.cs
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.csproj.CoreCompileInputs.cache
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.sourcelink.json
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.dll
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/refint/lab1-ballers.dll
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.pdb
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/lab1-ballers.genruntimeconfig.cache
+/home/igruk/Programming/lab-1-ballers/lab1-ballers/lab1-ballers/obj/Debug/net8.0/ref/lab1-ballers.dll
