@@ -1,6 +1,5 @@
-using System.Linq.Expressions;
+using System;
 using lab1_ballers.Domain.Cards;
-using lab1_ballers.Domain.CardsRepos;
 using lab1_ballers.Domain.Enums;
 using lab1_ballers.Domain.Exceptions;
 using lab1_ballers.Domain.Interfaces;
@@ -9,9 +8,15 @@ namespace lab1_ballers.App;
 
 public class Menu
 {
-    public static void StartMenu()
+    private CardService _service;
+
+    public Menu(CardService service)
     {
-        CardRepository repo = new CardRepository();
+        _service = service;
+    }
+
+    public void StartMenu()
+    {
         Console.Clear();
         while (true)
         {
@@ -33,7 +38,7 @@ public class Menu
                 //QuizTime
                 if (select == "1")
                 {
-                    QuizTime(repo);
+                    QuizTime();
                 }
 
                 //Create a card
@@ -49,53 +54,31 @@ public class Menu
                                   "\n Enter the Type of a Card: ");
 
                     int t = int.Parse(Console.ReadLine());
-
+                    
+                    if (t == 0)
+                        continue;
+                    
                     Console.Write(" Enter the question: ");
                     string q = Console.ReadLine();
 
                     Console.Write(" Enter the answer: ");
                     string a = Console.ReadLine();
 
-                    CardBase card = null;
-
-                    if (t == 1)
-                        card = new GeographyCard(q, a);
-
-                    else if (t == 2)
-                        card = new MathCard(q, a);
-
-
-                    else if (t == 3)
-                        card = new EnglishCard(q, a);
-
-                    else if (t == 0)
-                    {
-                        continue;
-                    }
-
-                    else
-                    {
-                        throw new InvalidInputException();
-                    }
-
-                    repo.AddCard(card);
-
+                    _service.AddCardByParams(t, q, a);
                 }
 
                 //Redact a card
                 else if (select == "3")
                 {
-                    CardBase[] cards = repo.GetCards(null);
+                    CardBase[] cards = _service.GetReport(null);
                     PrintDeck(cards);
                     Console.WriteLine(" What card do you want to redact?");
                     int i = int.Parse(Console.ReadLine());
 
-                    CardBase card = repo.GetCard(i);
+                    CardBase card = _service.GetCardById(i);
 
                     if (card == null)
-                    {
                         throw new NoCardsFoundException("⚠ No card found");
-                    }
 
                     Console.Write("############################################" +
                                   "\nWhat property of this card do you want to redact?" +
@@ -131,23 +114,21 @@ public class Menu
                     }
 
                     else
-                    {
                         throw new InvalidInputException();
-                    }
                 }
 
                 //Delete a card
                 else if (select == "4")
                 {
                     Console.Clear();
-                    CardBase[] workCards = repo.GetCards(null);
+                    CardBase[] workCards = _service.GetReport(null);
 
                     PrintDeck(workCards);
 
                     Console.WriteLine("  What card do you want to delete?");
                     int i = int.Parse(Console.ReadLine());
 
-                    repo.DeleteCard(i);
+                    _service.RemoveCard(i);
                     Console.WriteLine($" Proceed");
                 }
 
@@ -168,20 +149,20 @@ public class Menu
                     CardBase[] printCards = null;
 
                     if (type == 1)
-                        printCards = repo.GetCards(CardType.Geography);
+                        printCards = _service.GetReport(CardType.Geography);
 
                     else if (type == 2)
-                        printCards = repo.GetCards(CardType.Math);
+                        printCards = _service.GetReport(CardType.Math);
 
                     else if (type == 3)
-                        printCards = repo.GetCards(CardType.English);
+                        printCards = _service.GetReport(CardType.English);
 
                     else if (type == 4)
-                        printCards = repo.GetCards(null);
+                        printCards = _service.GetReport(null);
+                    
                     else if (type == 0)
-                    {
                         continue;
-                    }
+                    
                     else
                         throw new InvalidInputException();
 
@@ -220,7 +201,8 @@ public class Menu
             }
         }
     }
-    private static void PrintDeck(CardBase[] deck)
+    
+    private void PrintDeck(CardBase[] deck)
     {
         if (deck == null || deck.Length == 0)
         {
@@ -233,8 +215,7 @@ public class Menu
         }
     }
 
-
-    private static void QuizTime(CardRepository repo)
+    private void QuizTime()
     {
         Console.Write("############################################" +
                       "\n|| It's time for a Quiz :D ||" +
@@ -248,18 +229,18 @@ public class Menu
 
         int select = int.Parse(Console.ReadLine());
 
-        CardBase[] playCards = repo.GetCards(null);
+        CardBase[] playCards = _service.GetReport(null);
 
         if (select >= 1 && select <= 3)
         {
             if (select == 1)
-                playCards = repo.GetCards(CardType.Geography);
+                playCards = _service.GetReport(CardType.Geography);
 
             else if (select == 2)
-                playCards = repo.GetCards(CardType.Math);
+                playCards = _service.GetReport(CardType.Math);
 
             else if (select == 3)
-                playCards = repo.GetCards(CardType.English);
+                playCards = _service.GetReport(CardType.English);
 
             Console.WriteLine($" So it's time for a {(CardType)select} Quiz!!!");
         }
@@ -271,9 +252,8 @@ public class Menu
             return;
 
         else
-        {
             throw new InvalidInputException();
-        }
+        
 
         Console.Write(" Choose number of points for every correct answer:");
         int points = int.Parse(Console.ReadLine());
@@ -281,6 +261,4 @@ public class Menu
         IQuiz game = new QuizGame();
         game.RunQuiz(playCards, points);
     }
-    
-
 }

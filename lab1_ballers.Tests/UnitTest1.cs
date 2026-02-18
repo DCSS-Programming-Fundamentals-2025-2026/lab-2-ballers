@@ -1,6 +1,8 @@
+using lab1_ballers.App;
 using lab1_ballers.Domain.Cards;
 using lab1_ballers.Domain.CardsRepos;
 using lab1_ballers.Domain.Enums;
+using lab1_ballers.Domain.Exceptions;
 
 namespace TestProject1;
 
@@ -77,7 +79,6 @@ public class CardRepositoryTests
         GeographyCard testCard1 = new GeographyCard("Capital of France?", "Paris");
         
         repo.AddCard(testCard1);
-
         
         void Delete()
         {
@@ -88,5 +89,45 @@ public class CardRepositoryTests
         Assert.That(repo.GetCards(null).Length, Is.EqualTo(1));
     }
 
+    [Test]
+
+    public void Integration_FullScenario_WorksCorrectly()
+    {
+        CardRepository repo = new CardRepository();
+        CardService service = new CardService(repo);
+        
+        //1. Geography. 2. Math. 3. English
+        
+        service.AddCardByParams(1, "Capital of France?", "Paris");
+        service.AddCardByParams(2, "2+2?", "4");
+        
+        service.RemoveCard(0);
+        
+        service.AddCardByParams(3, "What is hello?", "It's greeting");
+        service.AddCardByParams(1, "Capital of Ukraine?", "Kiev");
+        
+        CardBase[] report = service.GetReport(CardType.Geography);
+        CardBase[] report2 = service.GetReport(null);
+        
+        Assert.That(report.Length, Is.EqualTo(1));
+        Assert.That(report2[0].Question, Is.EqualTo("2+2?"));
+        Assert.That(report2[1].Answer, Is.EqualTo("It's greeting"));
+    }
+    
+    [Test]
+    public void Integration_InvalidInput_ThrowsException()
+    {
+        CardRepository repo = new CardRepository();
+        CardService service = new CardService(repo);
+
+        void InterAdd()
+        {
+            service.AddCardByParams(99, "Capital of France?", "Paris");
+        }
+        
+        Assert.Throws<InvalidInputException>(InterAdd);
+        Assert.That(repo.GetCards(null).Length, Is.EqualTo(0));
+
+    }
     
 }

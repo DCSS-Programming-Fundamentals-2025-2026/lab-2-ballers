@@ -1,11 +1,21 @@
+using lab1_ballers.Domain.CardsRepos;
 using lab1_ballers.Domain.Exceptions;
 
 namespace lab1_ballers.App;
 
 public class DemoRunner
 {
-    public static void Run()
+    private CardService _service;
+
+    public DemoRunner()
     {
-        Menu.StartMenu();
+        CardRepository repo = new CardRepository();
+        _service = new CardService(repo);
+    }
+
+    public void Run()
+    {
+        Menu menu = new Menu(_service);
+        menu.StartMenu();
     }
 }
