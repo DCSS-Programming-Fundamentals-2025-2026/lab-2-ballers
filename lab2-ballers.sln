@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab2-ballers", "lab2-ballers\lab2-ballers.csproj", "{3AB14CB2-B5CA-4607-9C53-3436B62F03AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{D0D85E7E-29F0-4346-9D14-A07F4649E1BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1_ballers.Tests", "lab1_ballers.Tests\lab1_ballers.Tests.csproj", "{D0D85E7E-29F0-4346-9D14-A07F4649E1BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
