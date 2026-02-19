@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lab2-ballers")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df9f1dbee22592cb9bb10e3a9b3291beee3a37ba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed93a2dca6770336717809aabc0b8d855a660d57")]
 [assembly: System.Reflection.AssemblyProductAttribute("lab2-ballers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lab2-ballers")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

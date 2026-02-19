@@ -149,7 +149,7 @@ public class Menu
                     CardBase[] printCards = null;
 
                     if (type == 1)
-                        printCards = _service.GetReport(CardType.Geography);
+                        printCards = _service.GetReport(CardType.Geography); 
 
                     else if (type == 2)
                         printCards = _service.GetReport(CardType.Math);
