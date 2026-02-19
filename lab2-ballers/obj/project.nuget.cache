@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sd7zUlEMF3U=",
+  "dgSpecHash": "xuLzvkhdAoQ=",
   "success": true,
-  "projectFilePath": "D:\\KPI\\semester 2\\OP\\lab-2-help-team-8\\lab2-ballers\\lab2-ballers.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/igruk/Programming/lab-2-ballers/lab2-ballers/lab2-ballers.csproj",
+  "expectedPackageFiles": [
+    "/home/igruk/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.23/microsoft.aspnetcore.app.ref.8.0.23.nupkg.sha512"
+  ],
   "logs": []
 }
