@@ -1,22 +1,24 @@
 ﻿using lab1_ballers.Domain.Cards;
-using lab1_ballers.Domain.CardsRepos;
 using System.Collections;
+
 namespace lab1_ballers.Upgrade
 {
     class CardEnumerator : IEnumerator
     {
         private CardBase[] _cards;
         private int _position = -1;
+        private int _count; 
 
-        public CardEnumerator(CardBase[] cards)
+        public CardEnumerator(CardBase[] cards, int count) 
         {
             _cards = cards;
+            _count = count;
         }
 
         public bool MoveNext()
         {
             _position++;
-            return _position < _cards.Length;
+            return _position < _count; 
         }
 
         public object Current

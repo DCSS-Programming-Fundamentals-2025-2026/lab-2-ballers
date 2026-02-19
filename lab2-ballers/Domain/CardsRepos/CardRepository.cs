@@ -1,13 +1,14 @@
 using lab1_ballers.Domain.Cards;
 using lab1_ballers.Upgrade;
+using System;
 using System.Collections;
 
 namespace lab1_ballers.Domain.CardsRepos;
 
 public class CardRepository : IEnumerable
 {
-    public CardBase[] cards = new CardBase[200];
-    public int counter = 0;
+    private CardBase[] cards = new CardBase[200];
+    private int counter = 0;
 
     public void AddCard(CardBase card)
     {
@@ -64,7 +65,7 @@ public class CardRepository : IEnumerable
 
     public IEnumerator GetEnumerator()
     {
-        return new CardEnumerator(cards);
+        return new CardEnumerator(cards, counter);
     }
 
     public void NaturalSort()
@@ -74,7 +75,7 @@ public class CardRepository : IEnumerable
 
     public void AlternativeSort()
     {
-        Array.Sort (cards, 0, counter, new CardComparer());
-        Array.Reverse(cards);
+        Array.Sort(cards, 0, counter, new CardComparer());
+        Array.Reverse(cards, 0, counter);
     }
 }
