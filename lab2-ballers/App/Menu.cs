@@ -4,6 +4,7 @@ using lab1_ballers.Domain.CardsRepos;
 using lab1_ballers.Domain.Enums;
 using lab1_ballers.Domain.Exceptions;
 using lab1_ballers.Domain.Interfaces;
+using lab1_ballers.Upgrade;
 
 namespace lab1_ballers.App;
 
@@ -23,6 +24,9 @@ public class Menu
                               "\n3)  Redact a Quiz Card" +
                               "\n4)  Delete a Quiz Card" +
                               "\n5)  Print Quiz Cards" +
+                              "\n6)  Test Enumerator" +
+                              "\n7)  Natural Sort" +
+                              "\n8)  Alternative Sort" +
                               "\n0)  Exit" +
                               "\n############################################" +
                               "\n Select: ");
@@ -192,6 +196,52 @@ public class Menu
                     Console.Clear();
                 }
 
+                else if (select == "6")
+                {
+                    if (repo.counter != 0)
+                    {
+                        var it = repo.GetEnumerator();
+                        Console.WriteLine($"Here are all cards: ");
+                        while (it.MoveNext() && it.Current != null)
+                        {
+                            Console.WriteLine(it.Current.ToString());
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Create some cards first.");
+                    }
+                }
+                else if (select == "7")
+                {
+                    repo.NaturalSort();
+                    Console.WriteLine("Sorted cards.");
+                    foreach (var card in repo.cards)
+                    {
+                        if (card != null)
+                        {
+                            Console.WriteLine($"{card.ToString()}");
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                else if (select == "8")
+                {
+                    repo.AlternativeSort();
+                    Console.WriteLine("Sorted cards:");
+                    foreach (var card in repo.cards)
+                    {
+                        if (card != null)
+                        {
+                            Console.WriteLine($"{card.ToString()}");
+                        }
+                    }
+                }
+
                 //Exit
                 else if (select == "0")
                 {
@@ -281,6 +331,6 @@ public class Menu
         IQuiz game = new QuizGame();
         game.RunQuiz(playCards, points);
     }
-    
+
 
 }

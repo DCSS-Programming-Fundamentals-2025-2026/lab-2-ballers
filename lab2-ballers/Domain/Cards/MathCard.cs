@@ -11,6 +11,6 @@ public class MathCard : CardBase
     
     public override string ToString()
     {
-        return $" Type: {nameof(Type)} ||  Question: {Question} ||  Answer: {Answer}";
+        return $" Type: {Type} ||  Question: {Question} ||  Answer: {Answer}";
     }
 }
