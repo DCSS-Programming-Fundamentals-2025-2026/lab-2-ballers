@@ -8,6 +8,20 @@ public class CardService
 {
     private CardRepository _repository;
 
+    public System.Collections.IEnumerator GetEnumerator()
+    {
+        return _repository.GetEnumerator(); 
+    }
+
+    public void NaturalSort()
+    {
+        _repository.NaturalSort();
+    }
+
+    public void AlternativeSort()
+    {
+        _repository.AlternativeSort();
+    }
     public CardService(CardRepository repository)
     {
         _repository = repository;

@@ -3,6 +3,7 @@ using lab1_ballers.Domain.Cards;
 using lab1_ballers.Domain.Enums;
 using lab1_ballers.Domain.Exceptions;
 using lab1_ballers.Domain.Interfaces;
+using lab1_ballers.Upgrade;
 
 namespace lab1_ballers.App;
 
@@ -28,6 +29,9 @@ public class Menu
                               "\n3)  Redact a Quiz Card" +
                               "\n4)  Delete a Quiz Card" +
                               "\n5)  Print Quiz Cards" +
+                              "\n6)  Test Enumerator" +
+                              "\n7)  Natural Sort" +
+                              "\n8)  Alternative Sort" +
                               "\n0)  Exit" +
                               "\n############################################" +
                               "\n Select: ");
@@ -171,6 +175,38 @@ public class Menu
                     Console.Write(" Press enter to continue: ");
                     Console.ReadLine();
                     Console.Clear();
+                }
+
+                else if (select == "6")
+                {
+                    var it = _service.GetEnumerator();
+                    Console.WriteLine("Here are all cards: ");
+                    
+                    bool hasCards = false;
+                    while (it.MoveNext() && it.Current != null)
+                    {
+                        hasCards = true;
+                        Console.WriteLine(it.Current.ToString());
+                    }
+                    
+                    if (!hasCards)
+                    {
+                        Console.WriteLine("Create some cards first.");
+                    }
+                }
+                
+                else if (select == "7")
+                {
+                    _service.NaturalSort();
+                    Console.WriteLine("Sorted cards (Natural):");
+                    PrintDeck(_service.GetReport(null));
+                }
+
+                else if (select == "8")
+                {
+                    _service.AlternativeSort();
+                    Console.WriteLine("Sorted cards (Alternative):");
+                    PrintDeck(_service.GetReport(null));
                 }
 
                 //Exit
